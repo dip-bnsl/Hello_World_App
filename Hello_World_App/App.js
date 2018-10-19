@@ -6,24 +6,59 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+  TextInput
+} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+export default class App extends Component {
 
-type Props = {};
-export default class App extends Component<Props> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: ''
+    };
+  }
+
+  onCancelButtonClicked = () => {
+    alert('Cancel button pressed');
+  }
+
+
+
   render() {
     return (
+      // View tag
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        {/* Text tag */}
+        <Text style={styles.welcome}>Welcome to React Native Tutorials.</Text>
+
+        {/* TextInput tag */}
+        <TextInput
+          style={styles.textInputStyle}
+          placeholder="Type name here"
+          onChangeText={(text) => this.setState({ text })}
+        />
+
+        {/* Button tag */}
+        <Button
+          title='OK'
+          onPress={() => { alert('OK button pressed'); }}
+        />
+
+        {/* TouchableOpacity tag */}
+        <TouchableOpacity
+          style={styles.touchableOpacityStyle}
+          onPress={() => { this.onCancelButtonClicked() }}
+        >
+          <Text>Cancel</Text>
+        </TouchableOpacity>
+
       </View>
     );
   }
@@ -34,16 +69,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  touchableOpacityStyle: {
+    backgroundColor: 'orange',
+    padding: 10
   },
+  textInputStyle: {
+    height: 40,
+    width: '80%',
+    backgroundColor: 'rgb(231,234,237)',
+    borderRadius: 10,
+    paddingHorizontal: 10
+  }
 });
