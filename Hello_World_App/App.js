@@ -29,7 +29,9 @@ export default class App extends Component {
     alert('Cancel button pressed');
   }
 
-
+  onNameChanged = (text) => {
+    this.setState({text: text})
+  };
 
   render() {
     return (
@@ -42,7 +44,7 @@ export default class App extends Component {
         <TextInput
           style={styles.textInputStyle}
           placeholder="Type name here"
-          onChangeText={(text) => this.setState({ text })}
+          onChangeText={(text) => this.onNameChanged(text)}
         />
 
         {/* Button tag */}
